@@ -380,7 +380,7 @@ class AdminTheme extends CFormModel
         if (isset($this->config->metadata->presentation) && $this->config->metadata->presentation) {
             define('PRESENTATION', $this->config->metadata->presentation);
         } else {
-            define('PRESENTATION', gT('This is the LimeSurvey admin interface. Start to build your survey from here.'));
+            define('PRESENTATION', gT('This is the Reaply Lens admin interface. Start to build your survey from here.'));
         }
     }
 

@@ -6,8 +6,8 @@
  */
 
 $systemInfos = [
-    gT('LimeSurvey version') => Yii::app()->getConfig('versionnumber'),
-    gT('LimeSurvey build') => Yii::app()->getConfig('buildnumber') == '' ? 'github' : Yii::app()->getConfig('buildnumber'),
+    gT('ReaplyLens version') => Yii::app()->getConfig('versionnumber'),
+    gT('ReaplyLens build') => Yii::app()->getConfig('buildnumber') == '' ? 'github' : Yii::app()->getConfig('buildnumber'),
     gT('Operating system') => php_uname(),
     gT('PHP version') => phpversion(),
     gT('Web server name') => $_SERVER['SERVER_NAME'],
@@ -54,8 +54,7 @@ $questionEditor = $questionEditor ?? false;
 <footer class="container-fluid footer d-flex flex-grow-1 flex-column justify-content-end text-end">
     <div>
         <a class='subtitle' title='<?php eT("Link your survey to your Reaply Project!"); ?>'
-            href='https://app.reaply.africa' target='_blank'>Reaply
-            Lens</a>
+            href='https://app.reaply.africa' target='_blank'>ReaplyLens</a>
         <?php if (Permission::model()->hasGlobalPermission('superadmin', 'read')) { ?>
             <a href="#modalSystemInformation" data-bs-toggle="modal" title="<?= gT("Get system information") ?>">
             <?php } ?>

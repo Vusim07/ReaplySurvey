@@ -1,16 +1,16 @@
 <?php
 
 /*
-* LimeSurvey
-* Copyright (C) 2007-2015 The LimeSurvey Project Team / Carsten Schmitz
-* All rights reserved.
-* License: GNU/GPL License v2 or later, see LICENSE.php
-* LimeSurvey is free software. This version may have been modified pursuant
-* to the GNU General Public License, and as distributed it includes or
-* is derivative of works licensed under the GNU General Public License or
-* other free or open source software licenses.
-* See COPYRIGHT.php for copyright notices and details.
-*/
+ * LimeSurvey
+ * Copyright (C) 2007-2015 The LimeSurvey Project Team / Carsten Schmitz
+ * All rights reserved.
+ * License: GNU/GPL License v2 or later, see LICENSE.php
+ * LimeSurvey is free software. This version may have been modified pursuant
+ * to the GNU General Public License, and as distributed it includes or
+ * is derivative of works licensed under the GNU General Public License or
+ * other free or open source software licenses.
+ * See COPYRIGHT.php for copyright notices and details.
+ */
 
 /**
  * Admin Theme Model
@@ -40,12 +40,12 @@ class AdminTheme extends CFormModel
      */
     public static function getAdminThemeList()
     {
-        $sStandardTemplateRootDir  = Yii::app()->getConfig("styledir"); // The directory containing the default admin themes
-        $sUserTemplateDir          = Yii::app()->getConfig('uploaddir') . DIRECTORY_SEPARATOR . 'admintheme'; // The directory containing the user themes
+        $sStandardTemplateRootDir = Yii::app()->getConfig("styledir"); // The directory containing the default admin themes
+        $sUserTemplateDir = Yii::app()->getConfig('uploaddir') . DIRECTORY_SEPARATOR . 'admintheme'; // The directory containing the user themes
 
-        $aStandardThemeObjects     = self::getThemeList($sStandardTemplateRootDir); // array containing the configuration files of standard admin themes (styles/...)
-        $aUserThemeObjects         = self::getThemeList($sUserTemplateDir); // array containing the configuration files of user admin themes (upload/admintheme/...)
-        $aListOfThemeObjects       = array_merge($aStandardThemeObjects, $aUserThemeObjects);
+        $aStandardThemeObjects = self::getThemeList($sStandardTemplateRootDir); // array containing the configuration files of standard admin themes (styles/...)
+        $aUserThemeObjects = self::getThemeList($sUserTemplateDir); // array containing the configuration files of user admin themes (upload/admintheme/...)
+        $aListOfThemeObjects = array_merge($aStandardThemeObjects, $aUserThemeObjects);
 
         ksort($aListOfThemeObjects);
         return $aListOfThemeObjects;
@@ -61,9 +61,9 @@ class AdminTheme extends CFormModel
      */
     public function setAdminTheme()
     {
-        $sAdminThemeName           = App()->getConfig('admintheme'); // We retrieve the admin theme in config ( {{settings_global}} or config-defaults.php )
-        $sStandardTemplateRootDir  = App()->getConfig("styledir"); // Path for the standard Admin Themes
-        $sUserTemplateDir          = App()->getConfig('uploaddir') . DIRECTORY_SEPARATOR . 'admintheme'; // Path for the user Admin Themes
+        $sAdminThemeName = App()->getConfig('admintheme'); // We retrieve the admin theme in config ( {{settings_global}} or config-defaults.php )
+        $sStandardTemplateRootDir = App()->getConfig("styledir"); // Path for the standard Admin Themes
+        $sUserTemplateDir = App()->getConfig('uploaddir') . DIRECTORY_SEPARATOR . 'admintheme'; // Path for the user Admin Themes
 
         // Check if the required theme is a standard one
         if ($this->isStandardAdminTheme($sAdminThemeName)) {
@@ -81,16 +81,16 @@ class AdminTheme extends CFormModel
         // - user deleted a custom theme
         // In any case, we just set Sea Green as the template to use
         if (!is_dir($sTemplateDir . DIRECTORY_SEPARATOR . $sAdminThemeName)) {
-            $sAdminThemeName   = 'Sea_Green';
-            $sTemplateDir      = $sStandardTemplateRootDir;
-            $sTemplateUrl      = Yii::app()->getConfig('styleurl') . DIRECTORY_SEPARATOR . $sAdminThemeName;
+            $sAdminThemeName = 'Sea_Green';
+            $sTemplateDir = $sStandardTemplateRootDir;
+            $sTemplateUrl = Yii::app()->getConfig('styleurl') . DIRECTORY_SEPARATOR . $sAdminThemeName;
             SettingGlobal::setSetting('admintheme', 'Sea_Green');
         }
 
         // Now that we are sure we have an existing template, we can set the variables of the AdminTheme
         $this->sTemplateUrl = $sTemplateUrl;
-        $this->name         = $sAdminThemeName;
-        $this->path         = $sTemplateDir . DIRECTORY_SEPARATOR . $this->name;
+        $this->name = $sAdminThemeName;
+        $this->path = $sTemplateDir . DIRECTORY_SEPARATOR . $this->name;
 
         // This is necessary because a lot of files still use "adminstyleurl".
         // TODO: replace everywhere the call to Yii::app()->getConfig('adminstyleurl) by $oAdminTheme->sTemplateUrl;
@@ -103,7 +103,7 @@ class AdminTheme extends CFormModel
         if (\PHP_VERSION_ID < 80000) {
             $bOldEntityLoaderState = libxml_disable_entity_loader(true); // @see: http://phpsecurity.readthedocs.io/en/latest/Injection-Attacks.html#xml-external-entity-injection
         }
-        $sXMLConfigFile        = file_get_contents(realpath($this->path . '/config.xml')); // Now that entity loader is disabled, we can't use simplexml_load_file; so we must read the file with file_get_contents and convert it as a string
+        $sXMLConfigFile = file_get_contents(realpath($this->path . '/config.xml')); // Now that entity loader is disabled, we can't use simplexml_load_file; so we must read the file with file_get_contents and convert it as a string
 
         // Simple Xml is buggy on PHP < 5.4. The [ array -> json_encode -> json_decode ] workaround seems to be the most used one.
         // @see: http://php.net/manual/de/book.simplexml.php#105330 (top comment on PHP doc for simplexml)
@@ -331,8 +331,8 @@ class AdminTheme extends CFormModel
                     } else {
                         $previewUrl = Yii::app()->getConfig('uploadurl') . DIRECTORY_SEPARATOR . 'admintheme' . DIRECTORY_SEPARATOR . $file;
                     }
-                    $oTemplateConfig->path    = $sDir . DIRECTORY_SEPARATOR . $file . DIRECTORY_SEPARATOR;
-                    $oTemplateConfig->name    = $file;
+                    $oTemplateConfig->path = $sDir . DIRECTORY_SEPARATOR . $file . DIRECTORY_SEPARATOR;
+                    $oTemplateConfig->name = $file;
                     $oTemplateConfig->preview = '<img src="' . $previewUrl . '/preview.png" alt="admin theme preview" height="200" class="img-thumbnail" />';
                     $aListOfFiles[$file] = $oTemplateConfig;
                 }
@@ -353,10 +353,10 @@ class AdminTheme extends CFormModel
     {
         // Define images url
         if (!YII_DEBUG || self::$use_asset_manager || Yii::app()->getConfig('use_asset_manager')) {
-            if (file_exists($this->path . '/images/logo.svg')) {
-                define('LOGO_URL', App()->getAssetManager()->publish($this->path . '/images/logo.svg'));
+            if (file_exists($this->path . '/images/reaply_rect_blue.png')) {
+                define('LOGO_URL', App()->getAssetManager()->publish($this->path . '/images/reaply_rect_blue.png'));
             } else {
-                define('LOGO_URL', App()->getAssetManager()->publish(App()->getConfig("styledir") . '/Sea_Green/images/logo.svg'));
+                define('LOGO_URL', App()->getAssetManager()->publish(App()->getConfig("styledir") . '/Sea_Green/images/reaply_rect_blue.png'));
             }
             if (file_exists($this->path . '/images/logo_icon.png')) {
                 define('LOGO_ICON_URL', App()->getAssetManager()->publish($this->path . '/images/logo_icon.png'));
@@ -364,10 +364,10 @@ class AdminTheme extends CFormModel
                 define('LOGO_ICON_URL', App()->getAssetManager()->publish(App()->getConfig("styledir") . '/Sea_Green/images/logo_icon.png'));
             }
         } else {
-            if (file_exists($this->path . '/images/logo.svg')) {
-                define('LOGO_URL', $this->sTemplateUrl . '/images/logo.svg');
+            if (file_exists($this->path . '/images/reaply_rect_blue.png')) {
+                define('LOGO_URL', $this->sTemplateUrl . '/images/reaply_rect_blue.png');
             } else {
-                define('LOGO_URL', App()->getConfig('styleurl') . '/Sea_Green/images/logo.svg');
+                define('LOGO_URL', App()->getConfig('styleurl') . '/Sea_Green/images/reaply_rect_blue.png');
             }
             if (file_exists($this->path . '/images/logo_icon.png')) {
                 define('LOGO_ICON_URL', $this->sTemplateUrl . '/images/logo_icon.png');
@@ -380,7 +380,7 @@ class AdminTheme extends CFormModel
         if (isset($this->config->metadata->presentation) && $this->config->metadata->presentation) {
             define('PRESENTATION', $this->config->metadata->presentation);
         } else {
-            define('PRESENTATION', gT('This is the Reaply Lens admin interface. Start to build your survey from here.'));
+            define('PRESENTATION', gT('Welcome to ReaplyLens. Start to build your survey from here.'));
         }
     }
 

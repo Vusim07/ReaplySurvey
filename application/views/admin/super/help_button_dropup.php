@@ -7,22 +7,19 @@
             <span class="dropdown-header"><?php eT("Useful resources") ?></span>
         </li>
         <li>
-            <a class="dropdown-item" href="https://help.limesurvey.org/portal/en/home" target="_blank"><?php eT("Help center") ?></a>
+            <a class="dropdown-item" href="https://reaply.tawk.help/" target="_blank"><?php eT("Help center") ?></a>
+        </li>
+
+        <li>
+            <a class="dropdown-item" href="https://www.reaply.africa/privacy"
+                target="_blank"><?php eT("Privacy Policy") ?></a>
         </li>
         <li>
-            <a class="dropdown-item" href="https://translate.limesurvey.org/projects/" target="_blank"><?php eT("Help translating") ?></a>
+            <a class="dropdown-item" href="https://www.reaply.africa/terms"
+                target="_blank"><?php eT("Terms of Service") ?></a>
         </li>
         <li>
-            <a class="dropdown-item" href="https://forums.limesurvey.org" target="_blank"><?php eT("Support forum") ?></a>
-        </li>
-        <li>
-            <a class="dropdown-item" href="https://community.limesurvey.org/releases/" target="_blank"><?php eT("Release notes") ?></a>
-        </li>
-        <li>
-            <a class="dropdown-item" href="https://www.limesurvey.org/legal-notice" target="_blank"><?php eT("Legal information") ?></a>
-        </li>
-        <li>
-            <a class="dropdown-item" href="mailto:info@limesurvey.org"><?php eT("Contact") ?></a>
+            <a class="dropdown-item" href="mailto:hi@reaply.africa"><?php eT("Contact") ?></a>
         </li>
     </ul>
 </div>

@@ -53,32 +53,18 @@ $questionEditor = $questionEditor ?? false;
 <!-- Footer -->
 <footer class="container-fluid footer d-flex flex-grow-1 flex-column justify-content-end text-end">
     <div>
-        <a data-bs-toggle="tooltip" title='<?php eT("Visit our website!"); ?>' href='https://community.limesurvey.org' target='_blank'>LimeSurvey Community Edition</a>
+        <a class='subtitle' title='<?php eT("Link your survey to your Reaply Project!"); ?>'
+            href='https://app.reaply.africa' target='_blank'>Reaply
+            Lens</a>
         <?php if (Permission::model()->hasGlobalPermission('superadmin', 'read')) { ?>
             <a href="#modalSystemInformation" data-bs-toggle="modal" title="<?= gT("Get system information") ?>">
-        <?php } ?>
+            <?php } ?>
             <?php echo $versiontitle . "  " . $versionnumber . $buildtext; ?>
             <?php if (Permission::model()->hasGlobalPermission('superadmin', 'read')) { ?>
             </a>
-            <?php } ?>
+        <?php } ?>
 
-        <!-- Support / Donate -->
-        <?php
-        $this->widget('ext.ButtonWidget.ButtonWidget', [
-            'name' => '',
-            'id' => 'donate-button',
-            'text' => gT('Donate'),
-            'icon' => 'ri-service-fill',
-            'iconPosition' => 'right',
-            'link' => 'https://donate.limesurvey.org',
-            'htmlOptions' =>
-            [
-                'class' => 'btn btn-primary btn-sm ms-4',
-                'title' => sprintf(gT("Support this project - Donate to %s!"), 'LimeSurvey'),
-                'data-bs-toggle' => 'tooltip',
-                'target' => '_blank'
-            ],
-        ]); ?>
+
     </div>
     <!-- Help button -->
     <?php $this->renderPartial('/admin/super/help_button_dropup', ['questionEditor' => $questionEditor]); ?>
@@ -185,7 +171,8 @@ $questionEditor = $questionEditor ?? false;
                 <p class='modal-body-text'><?php eT("An error occurred."); ?></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">&nbsp;<?php eT("Close"); ?></button>
+                <button type="button" class="btn btn-outline-secondary"
+                    data-bs-dismiss="modal">&nbsp;<?php eT("Close"); ?></button>
             </div>
         </div>
     </div>
@@ -204,7 +191,8 @@ $questionEditor = $questionEditor ?? false;
                 <p class='modal-body-text'><?php /* This must be set in Javascript */ ?></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">&nbsp;<?php eT("Close"); ?></button>
+                <button type="button" class="btn btn-outline-secondary"
+                    data-bs-dismiss="modal">&nbsp;<?php eT("Close"); ?></button>
             </div>
         </div>
     </div>
@@ -229,7 +217,8 @@ App()->getController()->renderPartial('/surveyAdministration/partial/topbar/_mod
                 <p class='modal-body-text'></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">&nbsp;<?php eT("Close"); ?></button>
+                <button type="button" class="btn btn-outline-secondary"
+                    data-bs-dismiss="modal">&nbsp;<?php eT("Close"); ?></button>
             </div>
         </div>
     </div>

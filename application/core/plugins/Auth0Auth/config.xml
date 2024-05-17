@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <metadata>
+        <name>Auth0Auth</name>
+        <description>Auth0 Authentication Plugin for LimeSurvey</description>
+        <author>Vusi M</author>
+        <version>1.0</version>
+        <apiVersion>2.05</apiVersion>
+        <active>1</active>
+    </metadata>
+
+    <settings>
+        <setting>
+            <name>auth0_domain</name>
+            <type>string</type>
+            <label>Auth0 Domain</label>
+            <help>reaply.eu.auth0.com</help>
+            <default></default>
+        </setting>
+        <setting>
+            <name>client_id</name>
+            <type>string</type>
+            <label>Client ID</label>
+            <help>V6fCXmWYEnEfdgiHRdHKqg9XBIdoFyD1</help>
+            <default></default>
+        </setting>
+        <setting>
+            <name>client_secret</name>
+            <type>string</type>
+            <label>Client Secret</label>
+            <help>wYIf9fPmTT-mKnkRGLGK3u3g9t1pB4YTbU2IX1yhTKD2Z3Ae-uV0p6CcBn8X8uCO</help>
+            <default></default>
+        </setting>
+        <setting>
+            <name>redirect_uri</name>
+            <type>string</type>
+            <label>Redirect URI</label>
+            <help>https://renewed-cockatoo-liked.ngrok-free.app/index.php?r=auth/auth0/callback</help>
+            <default></default>
+        </setting>
+    </settings>
+</config>

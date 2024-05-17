@@ -27,6 +27,7 @@ $system_path = "vendor/yiisoft/yii/framework";
  */
 $application_folder = dirname(__FILE__) . "/application";
 
+
 /*
  * --------------------------------------------------------------------
  * DEFAULT CONTROLLER
@@ -56,6 +57,7 @@ $application_folder = dirname(__FILE__) . "/application";
 
 // The controller function you wish to be called.
 // $routing['function']    = '';
+// define('ROUTE_URL_INDEX', rtrim($_ENV['AUTH0_BASE_URL'], '/'));
 
 
 /*
@@ -73,7 +75,7 @@ $application_folder = dirname(__FILE__) . "/application";
  * Un-comment the $assign_to_config array below to use this feature
  *
  */
-    // $assign_to_config['name_of_config_item'] = 'value of config item';
+// $assign_to_config['name_of_config_item'] = 'value of config item';
 
 
 
@@ -90,15 +92,15 @@ $application_folder = dirname(__FILE__) . "/application";
  * ---------------------------------------------------------------
  */
 if (realpath($system_path) !== false) {
-    $system_path = realpath($system_path).'/';
+    $system_path = realpath($system_path) . '/';
 }
 
 // ensure there's a trailing slash
-$system_path = rtrim($system_path, '/').'/';
+$system_path = rtrim($system_path, '/') . '/';
 
 // Is the system path correct?
 if (!is_dir($system_path)) {
-    exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
+    exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: " . pathinfo(__FILE__, PATHINFO_BASENAME));
 }
 
 /*
@@ -128,10 +130,10 @@ define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
 // The path to the "application" folder
 if (is_dir($application_folder)) {
-    define('APPPATH', $application_folder.'/');
+    define('APPPATH', $application_folder . '/');
 } else {
     if (!is_dir(BASEPATH . $application_folder . '/')) {
-        exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
+        exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: " . SELF);
     }
     define('APPPATH', BASEPATH . $application_folder . '/');
 }
@@ -139,23 +141,23 @@ if (is_dir($application_folder)) {
 include __DIR__ . '/setdebug.php';
 
 if (version_compare(PHP_VERSION, '5.3.3', '<')) {
-    die('This script can only be run on PHP version 5.3.3 or later! Your version: '.PHP_VERSION.'<br />');
+    die('This script can only be run on PHP version 5.3.3 or later! Your version: ' . PHP_VERSION . '<br />');
 }
 require_once __DIR__ . '/vendor/autoload.php';
 
 /*
-* --------------------------------------------------------------------
-* LOAD THE BOOTSTRAP FILE
-* --------------------------------------------------------------------
-*
-* And away we go...
-*
-*/
+ * --------------------------------------------------------------------
+ * LOAD THE BOOTSTRAP FILE
+ * --------------------------------------------------------------------
+ *
+ * And away we go...
+ *
+ */
 
 require_once BASEPATH . 'yii' . EXT;
 require_once APPPATH . 'core/LSYii_Application' . EXT;
 
-$config = require_once(APPPATH . 'config/internal' . EXT);
+$config = require_once (APPPATH . 'config/internal' . EXT);
 
 Yii::$enableIncludePath = false;
 Yii::createApplication('LSYii_Application', $config)->run();

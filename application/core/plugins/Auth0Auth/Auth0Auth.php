@@ -36,7 +36,7 @@ class Auth0Auth extends \LimeSurvey\PluginManager\PluginBase
     // Create new user session
     public function newUserSession()
     {
-        require_once __DIR__ . '..\..\..\..\vendor\autoload.php';
+        require_once __DIR__ . '/../../../../vendor/autoload.php';
 
         $auth0_domain = $_ENV['AUTH0_DOMAIN'];
         $client_id = $_ENV['AUTH0_CLIENT_ID'];

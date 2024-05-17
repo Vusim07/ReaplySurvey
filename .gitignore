@@ -3,6 +3,7 @@
 /application/config/config.*.php
 /application/config/security.php
 
+.env
 # Don't include LS4 security.php
 
 ## Ignore any hidden folder/files (except explicitly defined)

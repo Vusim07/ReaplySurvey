@@ -1,6 +1,7 @@
 <?php
-// Load our environment variables from the .env file:
-(Dotenv\Dotenv::createImmutable(__DIR__))->load();
+
+use Dotenv\Dotenv;
+
 
 class Auth0Auth extends \LimeSurvey\PluginManager\PluginBase
 {
@@ -8,31 +9,45 @@ class Auth0Auth extends \LimeSurvey\PluginManager\PluginBase
 
     public function init()
     {
+        $this->loadEnv(); // Load .env variables
         $this->subscribe('beforeLogin');
         $this->subscribe('newUserSession');
     }
 
+    // Load .env variables
+    protected function loadEnv()
+    {
+        $dotenv = Dotenv::createImmutable(dirname(__DIR__, 4));
+        $dotenv->load();
+    }
+
+    // Redirect to Auth0 login page
     public function beforeLogin()
     {
         $auth0_domain = $_ENV['AUTH0_DOMAIN'];
         $client_id = $_ENV['AUTH0_CLIENT_ID'];
-        $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/callback';
-
+        $redirect_uri = $_ENV['AUTH0_REDIRECT_URI'];
         $login_url = "https://$auth0_domain/authorize?response_type=code&client_id=$client_id&redirect_uri=$redirect_uri&scope=openid%20profile%20email";
 
         header('Location: ' . $login_url);
         exit();
     }
 
+    // Create new user session
     public function newUserSession()
     {
-        require_once __DIR__ . '/vendor/autoload.php';
+        require_once __DIR__ . '..\..\..\..\vendor\autoload.php';
+
+        $auth0_domain = $_ENV['AUTH0_DOMAIN'];
+        $client_id = $_ENV['AUTH0_CLIENT_ID'];
+        $client_secret = $_ENV['AUTH0_CLIENT_SECRET'];
+        $redirect_uri = $_ENV['AUTH0_REDIRECT_URI'];
 
         $auth0 = new \Auth0\SDK\Auth0([
-            'domain' => $_ENV['AUTH0_DOMAIN'],
-            'client_id' => $_ENV['AUTH0_CLIENT_ID'],
-            'client_secret' => $_ENV['AUTH0_CLIENT_SECRET'],
-            'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . '/callback',
+            'domain' => $auth0_domain,
+            'client_id' => $client_id,
+            'client_secret' => $client_secret,
+            'redirect_uri' => $redirect_uri,
         ]);
 
         $userInfo = $auth0->getUser();

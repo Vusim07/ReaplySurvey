@@ -55,7 +55,7 @@ class Auth0Auth extends \LimeSurvey\PluginManager\PluginBase
         if ($userInfo) {
             $username = $userInfo['email']; // Or another unique identifier from user info
 
-            // Create or find the user in LimeSurvey
+            // Create or find the user in DB
             $user = User::model()->findByAttributes(['users_name' => $username]);
             if (!$user) {
                 // Create new user if doesn't exist

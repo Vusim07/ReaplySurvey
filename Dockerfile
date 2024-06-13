@@ -61,15 +61,18 @@ COPY --chown=www-data:www-data . /var/www/html/
 
 # Create and set permissions for directories
 RUN set -x; \
-    mkdir -p /var/www/html/tmp /var/lime/application/config /var/lime/upload /var/lime/plugins /var/lime/sessions /var/www/html/tmp/runtime; \
-    chown -R www-data:www-data /var/www/html /var/lime /var/www/html/tmp; \
-    chmod -R ug=rx /var/www/html /var/lime /var/www/html/tmp; \
-    mkdir -p /var/www/html/tmp/assets; \
-    chown -R www-data:www-data /var/www/html/tmp/assets; \
-    chmod -R 775 /var/www/html/tmp/assets;
+    mkdir -p /var/www/html/tmp/runtime; \
+    chown -R www-data:www-data /var/www/html; \
+    chmod -R ug=rx /var/www/html; \
+    mkdir -p /var/lime/application/config /var/lime/upload /var/lime/plugins /var/lime/sessions; \
+    chown -R www-data:www-data /var/lime/sessions /var/lime/application /var/lime/plugins /var/lime/upload /var/www/html/tmp/runtime; \
+    chmod -R 775 /var/www/html/tmp/runtime; \
+    cp -dpR /var/www/html/application/config/* /var/lime/application/config; \
+    cp -dpR /var/www/html/upload/* /var/lime/upload; \
+    cp -dpR /var/www/html/plugins/* /var/lime/plugins
 
-# Set permissions for LimeSurvey specific directories
-RUN chown -R www-data:www-data /var/lime/sessions /var/lime/application /var/lime/upload /var/lime/plugins /var/www/html/tmp/runtime;
+# Set the working directory
+WORKDIR /var/www/html
 
 # Install LimeSurvey dependencies
 RUN composer install --no-interaction --no-plugins --no-scripts

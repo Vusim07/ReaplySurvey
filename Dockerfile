@@ -23,6 +23,11 @@ COPY . /var/www/html/
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html/
 
+# Create and set permissions for the runtime directory
+RUN mkdir -p /var/www/html/tmp/runtime && \
+    chown -R www-data:www-data /var/www/html/tmp/runtime && \
+    chmod -R 775 /var/www/html/tmp/runtime
+
 # Change working directory
 WORKDIR /var/www/html
 

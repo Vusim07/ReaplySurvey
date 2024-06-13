@@ -41,6 +41,9 @@ RUN { \
     echo 'opcache.enable_cli=1'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Set LimeSurvey-specific PHP settings
 RUN { \
     echo 'memory_limit=256M'; \
@@ -67,8 +70,14 @@ RUN set -x; \
     cp -dpR /var/www/html/upload/* /var/lime/upload; \
     cp -dpR /var/www/html/plugins/* /var/lime/plugins
 
-# Expose port 80
-EXPOSE 80
+
+
 
 # Set the working directory
 WORKDIR /var/www/html
+
+# Install LimeSurvey dependencies
+RUN composer install --no-interaction --no-plugins --no-scripts
+
+# Expose port 80
+EXPOSE 80

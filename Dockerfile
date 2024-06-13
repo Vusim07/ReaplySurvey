@@ -14,7 +14,9 @@ RUN apt-get update && \
     libjpeg62-turbo-dev \
     libwebp-dev \
     libxpm-dev \
-    curl
+    curl \
+    git \
+    unzip
 
 # Enable necessary PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm && \

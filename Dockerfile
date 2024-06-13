@@ -13,13 +13,11 @@ RUN apt-get update && \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libwebp-dev \
-    libpng-dev \
     libxpm-dev \
-    libvpx-dev \
     curl
 
 # Enable necessary PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm --with-vpx && \
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm && \
     docker-php-ext-install pdo_pgsql gd intl soap zip ldap
 
 # Install Composer

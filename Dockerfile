@@ -53,6 +53,9 @@ RUN { \
     echo 'session.save_path="/var/lime/sessions"'; \
     } > /usr/local/etc/php/conf.d/limesurvey.ini
 
+# Copy LimeSurvey files into the container
+COPY --chown=www-data:www-data . /var/www/html/
+
 # Create and set permissions for directories
 RUN set -x; \
     chown -R www-data:www-data /var/www/html; \
@@ -63,12 +66,6 @@ RUN set -x; \
     cp -dpR /var/www/html/application/config/* /var/lime/application/config; \
     cp -dpR /var/www/html/upload/* /var/lime/upload; \
     cp -dpR /var/www/html/plugins/* /var/lime/plugins
-
-# Define volumes
-# VOLUME ["/var/www/html/plugins", "/var/www/html/upload", "/var/lime/sessions", "/var/www/html/application/config"]
-
-# Copy LimeSurvey files into the container
-COPY --chown=www-data:www-data . /var/www/html/
 
 # Expose port 80
 EXPOSE 80
